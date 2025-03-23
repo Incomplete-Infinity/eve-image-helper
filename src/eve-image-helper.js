@@ -26,23 +26,18 @@ class Image {
       const groupData = await groupRes.json();
       const categoryId = groupData.category_id;
 
-      const categoryRes = await fetch(`${esi}/universe/categories/${categoryId}/`);
-      const categoryData = await categoryRes.json();
-
       // Use category to determine valid image types
       switch (categoryId) {
         case 6: // Ship
           instance.variants.render = `${base}/types/${id}/render`;
+          instance.variants.icon = `${base}/types/${id}/icon`;
           break;
-        case 16: // Ancient Relics
+        case 34: // Ancient Relics
           instance.variants.relic = `${base}/types/${id}/relic`;
           break;
         case 9: // Blueprint
-          if (groupId === 332) {
-            instance.variants.bp = `${base}/types/${id}/bp`;
-          } else if (groupId === 333) {
-            instance.variants.bpc = `${base}/types/${id}/bpc`;
-          }
+          instance.variants.bp = `${base}/types/${id}/bp`;
+          instance.variants.bpc = `${base}/types/${id}/bpc`;
           break;
         default:
           instance.variants.icon = `${base}/types/${id}/icon`;
@@ -50,17 +45,17 @@ class Image {
       }
 
     } else {
-      const category = nameData?.category;
+      const { category } = nameData ?? {};
       switch (category) {
         case 'alliance':
-          instance.variants.logo = `${base}/alliances/${id}/logo`;
+          instance.variants.alliance = `${base}/alliances/${id}/logo`;
           break;
         case 'corporation':
         case 'faction':
-          instance.variants.logo = `${base}/corporations/${id}/logo`;
+          instance.variants.corporation = `${base}/corporations/${id}/logo`;
           break;
         case 'character':
-          instance.variants.portrait = `${base}/characters/${id}/portrait`;
+          instance.variants.character = `${base}/characters/${id}/portrait`;
           break;
       }
     }
@@ -70,3 +65,4 @@ class Image {
 }
 
 window.Image = Image;
+console.info("eve-image-helper.js loaded.");

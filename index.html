@@ -1,65 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EVE Image Resolver Demo</title>
-  <script src="./src/eve-image-helper.js"></script>
-</head>
-<body>
-  <h1>EVE Image Resolver Demo</h1>
-  <label for="input-id">Enter EVE ID:</label>
-  <input list="id-suggestions" id="input-id" placeholder="Enter EVE ID" />
-  <datalist id="id-suggestions">
-    <option value="434243723">Alliance: 434243723</option>
-    <option value="109299958">Corporation: 109299958</option>
-    <option value="500001">Faction (NPC Corp): 500001</option>
-    <option value="1338057886">Character: 1338057886</option>
-    <option value="587">Rifter (type): 587</option>
-    <option value="3082">250mm Railgun II (type): 3082</option>
-    <option value="11568">Avatar Blueprint (type): 11568</option>
-    <option value="30752">Intact Hull Section (type): 30752</option>
-  </datalist>
-  <button id="resolve-btn">Resolve Image</button>
-  <div id="result">
-    <table border="1" cellpadding="6">
-      <thead>
-        <tr><th>Variant</th><th>URL</th><th>Preview</th></tr>
-      </thead>
-      <tbody id="result-body"></tbody>
-    </table>
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EVE Image Resolver Demo</title>
 
-  <script>
-    const btn = document.getElementById('resolve-btn');
-    const input = document.getElementById('input-id');
-    const resultBody = document.getElementById('result-body');
+    <!-- Halfmoon CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/halfmoon@2.0.2/css/halfmoon.min.css"
+      rel="stylesheet"
+      integrity="sha256-RjeFzczeuZHCyS+Gvz+kleETzBF/o84ZRHukze/yv6o="
+      crossorigin="anonymous"
+    />
+    <!-- Halfmoon core themes -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/halfmoon@2.0.2/css/cores/halfmoon.cores.css"
+      rel="stylesheet"
+      integrity="sha256-MAzAVJMU/ze52ZHcA8CeqRrCOVndMZlHwNeS2c73vP4="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/topcoat/0.8.0/css/topcoat-mobile-dark.min.css"
+      integrity="sha512-3axCmtM0Aq1Zin8EQ/BgsaYCdR9jY488aH7JYG4zTUeEHWGqOjm86hjL4cx6nIWGLMJ/UU4m+MOcQ2D/f2QdfQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-    btn.onclick = async () => {
-      const id = Number(input.value);
-      input.value = ''; // Clear the input for new entry
-      if (!id) return alert('Enter a valid numeric ID');
+    <script src="./src/eve-image-helper.js"></script>
+  </head>
+  <body data-bs-theme="dark" data-bs-core="modern">
+    <main class="text-body">
+    <h1>EVE Image Resolver Demo</h1>
+    <fieldset>
+      <legend>Input</legend>
+      <div class="row">
+        <div class="col-8 text-bg-info bg-opacity-25 rounded-5">
+          <hgroup class="p-3">
+            <h3>Information</h3>
+            <p>Enter an EVE ID to resolve its image variants.</p>
+          </hgroup>
+          <hgroup class="p-3">
+            <h3>Description</h3>
+            <p>
+              The script is taking a few extra steps beyond the basic ESI calls
+              to resolve the image variants.
+            </p>
+            <p>
+              This is because the ESI calls do not provide a way to resolve the
+              image variants for all types of IDs.
+            </p>
+          </hgroup>
+        </div>
+        <div class="col-4">
+          <div class="card">
+            <header class="card-header">Applicable IDs:</header>
+            <div class="card-body">
+              <ul class="topcoat-list__container">
+                <li class="topcoat-list__item">Character</li>
+                <li class="topcoat-list__item">Corporation</li>
+                <li class="topcoat-list__item">Alliance</li>
+                <li class="topcoat-list__item">Faction (NPC Corp)</li>
+                <li class="topcoat-list__item">Type</li>
+                <li class="topcoat-list__item">Blueprint</li>
+                <li class="topcoat-list__item">Ancient Relic</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      const resolver = await Image.create(id);
-      const variants = resolver.variants;
-
-      if (!Object.keys(variants).length) {
-        alert('No image variants available.');
-        return;
-      }
-
-      const rows = Object.entries(variants).map(
-        ([key, url]) => `
+      <div class="row">
+        <div class="col-8 form-floating">
+          <input
+            class="form-control topcoat-text-input"
+            list="id-suggestions"
+            id="input-id"
+            placeholder="Enter EVE ID"
+          />
+          <datalist id="id-suggestions">
+            <option value="434243723">Alliance: 434243723</option>
+            <option value="109299958">Corporation: 109299958</option>
+            <option value="500001">Faction (NPC Corp): 500001</option>
+            <option value="1338057886">Character: 1338057886</option>
+            <option value="587">Rifter (type): 587</option>
+            <option value="3082">250mm Railgun II (type): 3082</option>
+            <option value="11568">Avatar Blueprint (type): 11568</option>
+            <option value="30752">Intact Hull Section (type): 30752</option>
+          </datalist>
+          <label for="input-id">Enter an EVE Online ID</label>
+        </div>
+        <div class="col-4 text-center">
+          <div id="spinner-container" class="d-none">
+            <div class="spinner-border"></div>
+          </div>
+          <div id="button-container">
+            <button id="resolve-btn" class="btn topcoat-button">
+              Resolve ID
+            </button>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <div id="result">
+      <table class="table" border="1" cellpadding="6">
+        <thead>
           <tr>
+            <th scope="col">#</th>
+            <th scope="col">Variant</th>
+            <th scope="col">URL</th>
+            <th scope="col">Preview</th>
+          </tr>
+        </thead>
+        <tbody id="result-body"></tbody>
+      </table>
+    </div>
+</main>
+    <script defer>
+      let runCount = 0;
+
+      const btn = document.getElementById("resolve-btn");
+      const input = document.getElementById("input-id");
+      const resultBody = document.getElementById("result-body");
+      const spinnerContainer = document.getElementById("spinner-container");
+      const buttonContainer = document.getElementById("button-container");
+
+      btn.onclick = async () => {
+        buttonContainer.classList.toggle("d-none");
+        spinnerContainer.classList.toggle("d-none");
+
+        const id = Number(input.value);
+        input.value = ""; // Clear the input for new entry
+        if (!id) return alert("Enter a valid numeric ID");
+
+        const resolver = await Image.create(id);
+        const variants = resolver.variants;
+
+        if (!Object.keys(variants).length) {
+          alert("No image variants available.");
+          return;
+        }
+
+        const rows = Object.entries(variants)
+          .map(([key, url]) => {
+            runCount++;
+            return `
+          <tr>
+            <th scope="row">${runCount}</th>
             <td>${key}</td>
             <td><a href="${url}" target="_blank">${url}</a></td>
             <td><img src="${url}" alt="${key}" style="max-height:100px" /></td>
           </tr>
-        `
-      ).join('');
+        `;
+          })
+          .join("");
 
-      resultBody.insertAdjacentHTML('beforeend', rows);
-    };
-  </script>
-</body>
+        resultBody.insertAdjacentHTML("beforeend", rows);
+
+        buttonContainer.classList.toggle("d-none");
+        spinnerContainer.classList.toggle("d-none");
+      };
+    </script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha256-whL0tQWoY1Ku1iskqPFvmZ+CHsvmRWx/PIoEvIeWh4I="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha256-3gQJhtmj7YnV1fmtbVcnAV6eI4ws0Tr48bVZCThtCGQ="
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
