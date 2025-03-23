@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EVE Image Resolver Demo</title>
+  <script src="./src/eve-image-helper.js"></script>
 </head>
 <body>
   <h1>EVE Image Resolver Demo</h1>
@@ -12,9 +13,7 @@
   <button id="resolve-btn">Resolve Image</button>
   <div id="result"></div>
 
-  <script type="module">
-    import EveImageResolver from './src/eve-image-helper.js';
-
+  <script>
     const btn = document.getElementById('resolve-btn');
     const input = document.getElementById('input-id');
     const result = document.getElementById('result');
