@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,30 +8,58 @@
 </head>
 <body>
   <h1>EVE Image Resolver Demo</h1>
-  <input type="number" id="input-id" placeholder="Enter EVE ID" />
+  <label for="input-id">Enter EVE ID:</label>
+  <input list="id-suggestions" id="input-id" placeholder="Enter EVE ID" />
+  <datalist id="id-suggestions">
+    <option value="434243723">Alliance: 434243723</option>
+    <option value="109299958">Corporation: 109299958</option>
+    <option value="500001">Faction (NPC Corp): 500001</option>
+    <option value="1338057886">Character: 1338057886</option>
+    <option value="587">Rifter (type): 587</option>
+    <option value="3082">250mm Railgun II (type): 3082</option>
+    <option value="11568">Avatar Blueprint (type): 11568</option>
+    <option value="30752">Intact Hull Section (type): 30752</option>
+  </datalist>
   <button id="resolve-btn">Resolve Image</button>
-  <div id="result"></div>
+  <div id="result">
+    <table border="1" cellpadding="6">
+      <thead>
+        <tr><th>Variant</th><th>URL</th><th>Preview</th></tr>
+      </thead>
+      <tbody id="result-body"></tbody>
+    </table>
+  </div>
 
   <script>
     const btn = document.getElementById('resolve-btn');
     const input = document.getElementById('input-id');
-    const result = document.getElementById('result');
+    const resultBody = document.getElementById('result-body');
 
     btn.onclick = async () => {
       const id = Number(input.value);
+      input.value = ''; // Clear the input for new entry
       if (!id) return alert('Enter a valid numeric ID');
 
-      result.innerHTML = 'Loading...';
-      const resolver = await new Image(id);
+      const resolver = await Image.create(id);
+      const variants = resolver.variants;
 
-      if (!resolver.url) return result.innerHTML = 'No image found';
+      if (!Object.keys(variants).length) {
+        alert('No image variants available.');
+        return;
+      }
 
-      result.innerHTML = `
-        <p><strong>Best Match:</strong> ${resolver.url}</p>
-        <img src="${resolver.url}" alt="EVE Image" style="max-height:200px" />
-        <pre>${JSON.stringify(resolver.variants, null, 2)}</pre>
-      `;
-    }
+      const rows = Object.entries(variants).map(
+        ([key, url]) => `
+          <tr>
+            <td>${key}</td>
+            <td><a href="${url}" target="_blank">${url}</a></td>
+            <td><img src="${url}" alt="${key}" style="max-height:100px" /></td>
+          </tr>
+        `
+      ).join('');
+
+      resultBody.insertAdjacentHTML('beforeend', rows);
+    };
   </script>
 </body>
 </html>
