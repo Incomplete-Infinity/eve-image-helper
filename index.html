@@ -1,0 +1,39 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EVE Image Resolver Demo</title>
+</head>
+<body>
+  <h1>EVE Image Resolver Demo</h1>
+  <input type="number" id="input-id" placeholder="Enter EVE ID" />
+  <button id="resolve-btn">Resolve Image</button>
+  <div id="result"></div>
+
+  <script type="module">
+    import EveImageResolver from './eve-image-resolver.js';
+
+    const btn = document.getElementById('resolve-btn');
+    const input = document.getElementById('input-id');
+    const result = document.getElementById('result');
+
+    btn.onclick = async () => {
+      const id = Number(input.value);
+      if (!id) return alert('Enter a valid numeric ID');
+
+      result.innerHTML = 'Loading...';
+      const resolver = await EveImageResolver.create(id);
+
+      if (!resolver.url) return result.innerHTML = 'No image found';
+
+      result.innerHTML = `
+        <p><strong>Best Match:</strong> ${resolver.url}</p>
+        <img src="${resolver.url}" alt="EVE Image" style="max-height:200px" />
+        <pre>${JSON.stringify(resolver.variants, null, 2)}</pre>
+      `;
+    }
+  </script>
+</body>
+</html>
