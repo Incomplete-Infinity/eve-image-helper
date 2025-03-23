@@ -23,7 +23,7 @@
       if (!id) return alert('Enter a valid numeric ID');
 
       result.innerHTML = 'Loading...';
-      const resolver = await EveImageResolver.create(id);
+      const resolver = await new Image(id);
 
       if (!resolver.url) return result.innerHTML = 'No image found';
 
