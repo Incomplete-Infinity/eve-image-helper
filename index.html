@@ -36,184 +36,83 @@
         <h1>EVE Image Resolver</h1>
       </header>
       <div class="row bg-primary-subtle bg-gradient rounded-5 m-3 shadow-lg">
-        <div
-          class="container-fluid bg-info bg-opacity-10 rounded-5 rounded-bottom-0 border border-info border-bottom-0 row g-0 mx-auto p-3 pb-0 mb-0"
-        >
-          <div
-            class="container-fluid bg-secondary bg-opacity-75 border border-secondary border-bottom-0 border-end-0 rounded-end-0 rounded rounded-bottom-0"
-          >
-            <div class="row container-fluid">
-              <header
-                class="col-12 rounded rounded-bottom-0 rounded-end-0 bg-primary-subtle"
-                style="border-bottom-right-radius: 50px !important"
-              >
-                <h2 class="text-center">What This Does</h2>
-              </header>
-              <div
-                class="col-7 bg-secondary border border-info border-end-0 rounded rounded-end-0"
-              >
-                <hgroup>
-                  <header
-                    class="rounded rounded-bottom-0 rounded-end-0 bg-primary-subtle"
-                    style="border-bottom-right-radius: 50px !important"
-                  >
-                    <h3 class="text-center">Introduction</h3>
-                  </header>
-                  <p class="px-1">
-                    There are an extremely large quantity of Eve Online
-                    entities(Characters, Inventory Types, Corporations,
-                    Alliances, etc.).
-                  </p>
-                  <p class="px-1">
-                    The game tracks all of these by with a very long list
-                    containing all of them. This list is indexed by ID.
-                  </p>
-                </hgroup>
-              </div>
-              <div
-                class="col-5 border border-info border-start-0 rounded rounded-start-0"
-              >
-                <div class="card">
-                  <header
-                    class="card-header rounded-start-0 bg-primary-subtle text-center"
-                    style="border-bottom-left-radius: 50px !important"
-                  >
-                    Supported ID Categories
-                  </header>
-                  <div class="card-body">
-                    <ul class="topcoat-list__container list-group">
-                      <li
-                        class="topcoat-list__item list-group-item rounded px-1 bg-body"
-                      >
-                        Character
-                      </li>
-                      <li
-                        class="topcoat-list__item list-group-item rounded px-1 bg-body"
-                      >
-                        Corporation
-                      </li>
-                      <li
-                        class="topcoat-list__item list-group-item rounded px-1 bg-body"
-                      >
-                        Alliance
-                      </li>
-                      <li
-                        class="topcoat-list__item list-group-item rounded px-1 bg-body"
-                      >
-                        Faction (NPC Corp)
-                      </li>
-                      <li
-                        class="topcoat-list__item list-group-item rounded px-1 bg-body"
-                      >
-                        Type (Item)
-                      </li>
-                      <li
-                        class="topcoat-list__item list-group-item rounded px-1 bg-body"
-                      >
-                        Blueprint
-                      </li>
-                      <li
-                        class="topcoat-list__item list-group-item rounded px-1 bg-body"
-                      >
-                        Ancient Relic
-                      </li>
-                    </ul>
+        <div class="row bg-primary-subtle bg-gradient rounded-5 m-3 shadow-lg">
+          <!-- Informational Panel -->
+          <div class="container-fluid bg-info bg-opacity-10 rounded-5 rounded-bottom-0 border border-info border-bottom-0 row g-0 mx-auto p-3 pb-0 mb-0">
+            <div class="container-fluid bg-secondary bg-opacity-75 border border-secondary border-bottom-0 border-end-0 rounded-end-0 rounded rounded-bottom-0">
+              <div class="row container-fluid">
+                <!-- Section Title -->
+                <header class="col-12 bg-primary-subtle rounded rounded-bottom-0 rounded-end-0" style="border-bottom-right-radius: 50px !important">
+                  <h2 class="text-center py-2">What This Does</h2>
+                </header>
+        
+                <!-- Introduction & Explanation -->
+                <div class="col-7 bg-secondary border border-info border-end-0 rounded rounded-end-0 p-3">
+                  <hgroup>
+                    <header class="bg-primary-subtle text-center py-2 rounded rounded-bottom-0 rounded-end-0" style="border-bottom-right-radius: 50px !important">
+                      <h3>Introduction</h3>
+                    </header>
+                    <p class="text-bg-info rounded px-2 my-4">
+                      EVE Online contains a vast universe filled with numerous entities such as characters, inventory types, corporations, alliances, blueprints, and ancient relics. Each of these entities is uniquely identified by an ID and can be referenced using the ESI (EVE Swagger Interface).
+                    </p>
+                    <p class="text-bg-info rounded px-2 my-4">
+                      This tool utilizes that ID to determine the type of entity and generate valid image URLs. Rather than blindly guessing the URL format, it intelligently resolves the ID category through ESI’s <code>universe/names</code> endpoint.
+                    </p>
+                  </hgroup>
+                </div>
+        
+                <!-- Supported Categories List -->
+                <div class="col-5 border border-info border-start-0 rounded rounded-start-0 p-3">
+                  <div class="card">
+                    <header class="card-header rounded-start-0 bg-primary-subtle text-center" style="border-bottom-left-radius: 50px !important">
+                      Supported ID Categories
+                    </header>
+                    <div class="card-body">
+                      <ul class="topcoat-list__container list-group">
+                        <li class="topcoat-list__item list-group-item bg-body">Character</li>
+                        <li class="topcoat-list__item list-group-item bg-body">Corporation</li>
+                        <li class="topcoat-list__item list-group-item bg-body">Alliance</li>
+                        <li class="topcoat-list__item list-group-item bg-body">Faction (NPC Corp)</li>
+                        <li class="topcoat-list__item list-group-item bg-body">Type (Item)</li>
+                        <li class="topcoat-list__item list-group-item bg-body">Blueprint</li>
+                        <li class="topcoat-list__item list-group-item bg-body">Ancient Relic</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+        
+                <!-- Example API Response Block -->
+                <div class="col-12 col-md-6 col-lg-6 bg-body border border-info rounded-3 p-3 mt-3">
+
+                      <figure class="container-fluid p-1 figure m-0">
+                       
+<pre class="bg-secondary rounded fs-5" style="background: linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 10ch,  #A7C 10ch,  #A7C 19ch, white 19ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 10ch,  #A7C 10ch,  #A7C 19ch, white 19ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 10ch,  #A7C 10ch,  #A7C 16ch, white 16ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 10ch,  #A7C 10ch,  #A7C 13ch, white 13ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 10ch,  #A7C 10ch,  #A7C 14ch, white 14ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 13ch,  #A7C 13ch,  #A7C 16ch, white 16ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 10ch,  #A7C 10ch,  #A7C 15ch, white 15ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 10ch,  #A7C 10ch,  #A7C 15ch, white 15ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 10ch,  #A7C 10ch,  #A7C 20ch, white 20ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch); background-repeat: no-repeat; background-size: 80ch 22px, 80ch 44px, 80ch 66px, 80ch 88px, 80ch 110px, 80ch 132px, 80ch 154px, 80ch 176px, 80ch 198px, 80ch 220px, 80ch 242px, 80ch 264px, 80ch 286px, 80ch 308px, 80ch 330px, 80ch 352px, 80ch 374px, 80ch 396px, 80ch 418px, 80ch 440px, 80ch 462px, 80ch 484px, 80ch 506px, 80ch 528px, 80ch 550px, 80ch 572px, 80ch 594px, 80ch 616px, 80ch 638px, 80ch 660px, 80ch 682px, 80ch 704px, 80ch 726px, 80ch 748px, 80ch 770px, 80ch 792px, 80ch 814px, 80ch 836px, 80ch 858px, 80ch 880px, 80ch 902px, 80ch 924px; background-clip: text; -webkit-background-clip: text; color: transparent; width: 80ch; font-family: monospace; font-size: 20px; line-height: 22px;">
+[<br>  {<br>    "category": "alliance",<br>    "id": 434243723,<br>    "name": "C C P Alliance"<br>  },<br>  {<br>    "category": "corporation",<br>    "id": 109299958,<br>    "name": "C C P"<br>  },<br>  {<br>    "category": "faction",<br>    "id": 500001,<br>    "name": "Caldari State"<br>  },<br>  {<br>    "category": "inventory_type",<br>    "id": 587,<br>    "name": "Rifter"<br>  },<br>  {<br>    "category": "inventory_type",<br>    "id": 3082,<br>    "name": "250mm Railgun II"<br>  },<br>  {<br>    "category": "inventory_type",<br>    "id": 11568,<br>    "name": "Avatar Blueprint"<br>  },<br>  {<br>    "category": "inventory_type",<br>    "id": 30752,<br>    "name": "Intact Hull Section"<br>  },<br>  {<br>    "category": "character",<br>    "id": 1338057886,<br>    "name": "CCP Alliance Tournament"<br>  }<br>]   <br>
+</pre>
+                    <figcaption class="text-center mt-2">Sample response from <abbr title="Application Programming Interface">API</abbr> lookup.</figcaption>
+                  </figure>
+                </div>
+                <!-- Detailed Breakdown -->
+                <div class="col-12 col-md-6 col-lg-6">
+                  <div class="bg-body border border-info rounded p-3 mb-2">
+                    <p>
+                      This tool initiates by resolving an ID to its associated category using the <code>universe/names</code> endpoint. From there, each category is treated accordingly.
+                    </p>
+                  </div>
+                  <div class="bg-body border border-info rounded p-3 mb-2">
+                    <p>
+                      If the category is <code>inventory_type</code>, the tool performs additional lookups to identify the type’s group and category. This helps distinguish between ships, blueprints, and relics — ensuring precise URL construction.
+                    </p>
+                  </div>
+                  <div class="bg-body border border-info rounded p-3">
+                    <p>
+                      Ship types will return <strong>icon</strong> and <strong>render</strong> images. Blueprints return both <strong>bp</strong> and <strong>bpc</strong> formats. Ancient relics return <strong>relic</strong> images. All other IDs resolve to their appropriate <strong>portrait</strong> or <strong>logo</strong>.
+                    </p>
                   </div>
                 </div>
               </div>
-              <div
-                class="col-sm-12 col-md-6 col-lg-3 bg-body border border-info rounded-3 p-1"
-              >
-                <figure class="container-fluid p-1 figure m-0">
-                  <pre class="bg-secondary rounded"><code>[
-  {
-    "category": "alliance",
-    "id": 434243723,
-    "name": "C C P Alliance"
-  },
-  {
-    "category": "corporation",
-    "id": 109299958,
-    "name": "C C P"
-  },
-  {
-    "category": "faction",
-    "id": 500001,
-    "name": "Caldari State"
-  },
-  {
-    "category": "inventory_type",
-    "id": 587,
-    "name": "Rifter"
-  },
-  {
-    "category": "inventory_type",
-    "id": 3082,
-    "name": "250mm Railgun II"
-  },
-  {
-    "category": "inventory_type",
-    "id": 11568,
-    "name": "Avatar Blueprint"
-  },
-  {
-    "category": "inventory_type",
-    "id": 30752,
-    "name": "Intact Hull Section"
-  },
-  {
-    "category": "character",
-    "id": 1338057886,
-    "name": "CCP Alliance Tournament"
-  }
-]</code></pre>
-                  <figcaption>
-                    As you can see, this
-                    <abbr title="Application Programming Interface">API</abbr>
-                  </figcaption>
-                </figure>
-              </div>
-              <div class="col-7">
-                <p class="bg-body rounded px-1 border border-info">
-                  This tool takes an EVE Online ID and determines which image
-                  formats are available using basic
-                  <abbr title="Eve Swagger Interface"
-                    ><a
-                      href="https://docs.esi.evetech.net/docs/image_server.html"
-                      target="_blank"
-                      rel="noopener"
-                      >ESI</a
-                    ></abbr
-                  >
-                  lookups. It supports a wide range of in-game entities, which
-                  are all listed to the right.
-                </p>
-                <p class="bg-body rounded p-1 px-2 border border-info">
-                  The script first resolves the category (e.g.
-                  <em>character</em>, <em>corporation</em>,
-                  <em>inventory_type</em>) by querying the
-                  <code>universe/names/</code> <em>endpoint</em> with the given
-                  ID. Below, is an reproduction of an actual response to one
-                  such query.
-                </p>
-                <p class="bg-body rounded p-1 px-2 border border-info">
-                  Then, it determines the appropriate image variants. For
-                  inventory types, it performs additional lookups to distinguish
-                  between ships, blueprints, and relics specifically — ensuring
-                  the most accurate URL formation.
-                </p>
-                <p class="bg-body rounded p-1 px-2 border border-info">
-                  Ships will return both <strong>icon</strong> and
-                  <strong>render</strong> images. Blueprints return
-                  <strong>bp</strong> and <strong>bpc</strong> formats. Ancient
-                  relics return a <strong>relic</strong> image. Other IDs
-                  resolve to <strong>portraits</strong> or
-                  <strong>logos</strong> as appropriate.
-                </p>
-              </div>
             </div>
           </div>
-        </div>
 
         <div
           class="col-12 bg-primary bg-opacity-10 rounded-5 rounded-bottom-0 rounded-top-0 rounded-top-0 border border-primary border-top-0 border-bottom-0 row g-0 mx-auto p-3 py-0 my-0"
