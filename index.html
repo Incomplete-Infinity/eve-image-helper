@@ -30,20 +30,20 @@
     <script src="./src/eve-image-helper.js"></script>
   </head>
   <body data-bs-theme="dark" data-bs-core="modern">
-    <main class="text-body px-4">
+    <main class="text-body px-sm-0 px-md-1 px-lg-2">
       <header class="bg-secondary bg-opacity-50">
         <h1>EVE Image Resolver</h1>
       </header>
-      <div class="row bg-primary-subtle rounded-5 m-3 shadow-lg">
+      <div class="row bg-primary-subtle bg-gradient rounded-5 m-3 shadow-lg">
         <div
-          class="col-12 bg-info bg-opacity-25 rounded-5 rounded-bottom-0 border border-info border-bottom-0 row g-0 mx-auto p-3 pb-0"
+          class="col-12 bg-info bg-opacity-10 rounded-5 rounded-bottom-0 border border-info border-bottom-0 row g-0 mx-auto p-3 pb-0 mb-0"
         >
-          <div class="col-sm-7 col-md-8 col-lg-9">
+          <div class="col-sm-7 col-md-8 col-lg-9 bg-secondary bg-opacity-75 border border-secondary border-bottom-0 border-end-0 rounded-end-0 rounded rounded-bottom-0">
             <div
-              class="h-100 bg-secondary bg-opacity-50 border border-info border-end-0 rounded rounded-end-0 p-4"
+              class="h-100"
             >
               <h2 class="mb-3">What This Does</h2>
-              <p class="bg-body rounded p-1 border">
+              <p class="bg-body rounded px-1 border">
                 This tool takes an EVE Online ID and determines which image
                 formats are available using basic
                 <abbr title="Eve Swagger Interface"><a
@@ -54,14 +54,14 @@
                 ></abbr>
                 lookups. It supports a wide range of in-game entities, which are all listed to the right.
               </p>
-              <p class="bg-body rounded p-1 border">
+              <p class="bg-body rounded px-1 border">
                 The script first resolves the category (e.g. <em>character</em>,
                 <em>corporation</em>, <em>inventory_type</em>) then determines
                 the appropriate image variants. For inventory types, it performs
                 additional lookups to identify ships, blueprints, and relics
                 specifically — ensuring the most accurate URL formation.
               </p>
-              <p class="bg-body rounded p-1 border">
+              <p class="bg-body rounded px-1 border">
                 Ships will return both <strong>icon</strong> and
                 <strong>render</strong> images. Blueprints return
                 <strong>bp</strong> and <strong>bpc</strong> formats. Ancient
@@ -71,29 +71,29 @@
               </p>
             </div>
           </div>
-          <div class="col-5 col-md-4 col-lg-3">
+          <div class="col-sm-5 col-md-4 col-lg-3">
             <div
-              class="card h-100 bg-secondary bg-opacity-50 border border-info border-start-0 rounded rounded-start-0"
+              class="card h-100 bg-secondary bg-opacity-75 border border-secondary border-bottom-0 border-start-0 rounded rounded-bottom-0 rounded-start-0"
             >
-              <div class="card-header rounded-bottom-0">
+              <header class="card-header rounded-start-0" style="border-bottom-left-radius: 50px !important;">
                 Supported ID Categories
-              </div>
+              </header>
               <div class="card-body">
                 <ul
-                  class="topcoat-list__container list-group bg-body">
-                  <li class="topcoat-list__item list-group-item">Character</li>
-                  <li class="topcoat-list__item list-group-item">
+                  class="topcoat-list__container list-group">
+                  <li class="topcoat-list__item list-group-item rounded px-1 bg-body">Character</li>
+                  <li class="topcoat-list__item list-group-item rounded px-1 bg-body">
                     Corporation
                   </li>
-                  <li class="topcoat-list__item list-group-item">Alliance</li>
-                  <li class="topcoat-list__item list-group-item">
+                  <li class="topcoat-list__item list-group-item rounded px-1 bg-body">Alliance</li>
+                  <li class="topcoat-list__item list-group-item rounded px-1 bg-body">
                     Faction (NPC Corp)
                   </li>
-                  <li class="topcoat-list__item list-group-item">
+                  <li class="topcoat-list__item list-group-item rounded px-1 bg-body">
                     Type (Item)
                   </li>
-                  <li class="topcoat-list__item list-group-item">Blueprint</li>
-                  <li class="topcoat-list__item list-group-item">
+                  <li class="topcoat-list__item list-group-item rounded px-1 bg-body">Blueprint</li>
+                  <li class="topcoat-list__item list-group-item rounded px-1 bg-body">
                     Ancient Relic
                   </li>
                 </ul>
@@ -103,24 +103,23 @@
         </div>
 
         <div
-          class="col-12 bg-primary bg-opacity-10 rounded-0 border border-primary border-top-0 border-bottom-0 row g-0 mb-auto mx-auto p-3 py-0"
+          class="col-12 bg-primary bg-opacity-10 rounded-5 rounded-bottom-0 rounded-top-0 rounded-top-0 border border-primary border-top-0 border-bottom-0 row g-0 mx-auto p-3 py-0 my-0"
         >
-          <div class="col-12 pb-5">
+          <div class="col-12">
             <fieldset
               id="resolver-form"
-              class="my-5 h-100 bg-secondary bg-opacity-75 rounded rounded-bottom-0 border border-secondary border-bottom-0 p-4 py-0"
+              class="bg-secondary bg-opacity-75 rounded rounded-bottom-0 rounded-top-0 border border-secondary border-bottom-0 border-top-0 p-1 py-4"
             >
- 
               <legend>
                 <h2>Demo</h2>
               </legend>
-
-              <p class="rounded bg-body p-1">Input an id and click the button to demonstrate the script. The input field will offer example ids.</p>
-              <div class="row g-3 align-items-center">
+              <p class="rounded-pill bg-body px-3">Input an id and click the button to demonstrate the script. The input field will offer valid ids of each category for the purpose of the demo.</p>
+              <div class="row g-3 align-items-center mt-5">
                 <div class="col-sm-8 col-md-9 col-lg-10">
+                  <div class="form-floating">
                   <input
                     type="number"
-                    class="form-control topcoat-text-input--large"
+                    class="form-control topcoat-text-input"
                     list="id-suggestions"
                     id="input-id"
                     placeholder="Enter EVE ID"
@@ -140,6 +139,8 @@
                       Intact Hull Section (type): 30752
                     </option>
                   </datalist>
+                <label for="input-id">Enter EVE ID</label>
+                </div>
                 </div>
                 <div
                   class="col-sm-4 col-md-3 col-lg-2 d-flex justify-content-start"
