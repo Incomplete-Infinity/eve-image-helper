@@ -26,7 +26,16 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
+<style>
+  svg {
+  overflow: visible;
+  width: 128px;
+  height: 64px;
+}
+#animated-logo {
+  filter: blur(1px) opacity(1) saturate(2) brightness(2);
+}
+</style>
     <script src="./src/eve-image-helper.js"></script>
   </head>
 
@@ -38,195 +47,628 @@
       <div class="row bg-primary-subtle bg-gradient rounded-5 m-3 shadow-lg">
         <div class="row bg-primary-subtle bg-gradient rounded-5 m-3 shadow-lg">
           <!-- Informational Panel -->
-          <div class="container-fluid bg-info bg-opacity-10 rounded-5 rounded-bottom-0 border border-info border-bottom-0 row g-0 mx-auto p-3 pb-0 mb-0">
-            <div class="container-fluid bg-secondary bg-opacity-75 border border-secondary border-bottom-0 border-end-0 rounded-end-0 rounded rounded-bottom-0">
+          <div
+            class="container-fluid bg-info bg-opacity-10 rounded-5 rounded-bottom-0 border border-info border-bottom-0 row g-0 mx-auto p-3 pb-0 mb-0"
+          >
+            <div
+              class="container-fluid bg-secondary bg-opacity-75 border border-secondary border-bottom-0 border-end-0 rounded-end-0 rounded rounded-bottom-0"
+            >
               <div class="row container-fluid">
                 <!-- Section Title -->
-                <header class="col-12 bg-primary-subtle rounded rounded-bottom-0 rounded-end-0" style="border-bottom-right-radius: 50px !important">
+                <header
+                  class="col-12 bg-primary-subtle rounded rounded-bottom-0 rounded-end-0"
+                  style="border-bottom-right-radius: 50px !important"
+                >
                   <h2 class="text-center py-2">What This Does</h2>
                 </header>
-        
+
                 <!-- Introduction & Explanation -->
-                <div class="col-7 bg-secondary border border-info border-end-0 rounded rounded-end-0 p-3">
+                <div
+                  class="col-7 bg-secondary border border-info border-end-0 rounded rounded-end-0 p-3"
+                >
                   <hgroup>
-                    <header class="bg-primary-subtle text-center py-2 rounded rounded-bottom-0 rounded-end-0" style="border-bottom-right-radius: 50px !important">
+                    <header
+                      class="bg-primary-subtle text-center py-2 rounded rounded-bottom-0 rounded-end-0"
+                      style="border-bottom-right-radius: 50px !important"
+                    >
                       <h3>Introduction</h3>
                     </header>
                     <p class="text-bg-info rounded px-2 my-4">
-                      EVE Online contains a vast universe filled with numerous entities such as characters, inventory types, corporations, alliances, blueprints, and ancient relics. Each of these entities is uniquely identified by an ID and can be referenced using the ESI (EVE Swagger Interface).
+                      EVE Online contains a vast universe filled with numerous
+                      entities such as characters, inventory types,
+                      corporations, alliances, blueprints, and ancient relics.
+                      Each of these entities is uniquely identified by an ID and
+                      can be referenced using the ESI (EVE Swagger Interface).
                     </p>
                     <p class="text-bg-info rounded px-2 my-4">
-                      This tool utilizes that ID to determine the type of entity and generate valid image URLs. Rather than blindly guessing the URL format, it intelligently resolves the ID category through ESI’s <code>universe/names</code> endpoint.
+                      This tool utilizes that ID to determine the type of entity
+                      and generate valid image URLs. Rather than blindly
+                      guessing the URL format, it intelligently resolves the ID
+                      category through ESI’s
+                      <code>universe/names</code> endpoint.
                     </p>
                   </hgroup>
                 </div>
-        
+
                 <!-- Supported Categories List -->
-                <div class="col-5 border border-info border-start-0 rounded rounded-start-0 p-3">
+                <div
+                  class="col-5 border border-info border-start-0 rounded rounded-start-0 p-3"
+                >
                   <div class="card">
-                    <header class="card-header rounded-start-0 bg-primary-subtle text-center" style="border-bottom-left-radius: 50px !important">
+                    <header
+                      class="card-header rounded-start-0 bg-primary-subtle text-center"
+                      style="border-bottom-left-radius: 50px !important"
+                    >
                       Supported ID Categories
                     </header>
                     <div class="card-body">
                       <ul class="topcoat-list__container list-group">
-                        <li class="topcoat-list__item list-group-item bg-body">Character</li>
-                        <li class="topcoat-list__item list-group-item bg-body">Corporation</li>
-                        <li class="topcoat-list__item list-group-item bg-body">Alliance</li>
-                        <li class="topcoat-list__item list-group-item bg-body">Faction (NPC Corp)</li>
-                        <li class="topcoat-list__item list-group-item bg-body">Type (Item)</li>
-                        <li class="topcoat-list__item list-group-item bg-body">Blueprint</li>
-                        <li class="topcoat-list__item list-group-item bg-body">Ancient Relic</li>
+                        <li class="topcoat-list__item list-group-item bg-body">
+                          Character
+                        </li>
+                        <li class="topcoat-list__item list-group-item bg-body">
+                          Corporation
+                        </li>
+                        <li class="topcoat-list__item list-group-item bg-body">
+                          Alliance
+                        </li>
+                        <li class="topcoat-list__item list-group-item bg-body">
+                          Faction (NPC Corp)
+                        </li>
+                        <li class="topcoat-list__item list-group-item bg-body">
+                          Type (Item)
+                        </li>
+                        <li class="topcoat-list__item list-group-item bg-body">
+                          Blueprint
+                        </li>
+                        <li class="topcoat-list__item list-group-item bg-body">
+                          Ancient Relic
+                        </li>
                       </ul>
                     </div>
                   </div>
                 </div>
-        
                 <!-- Example API Response Block -->
-                <div class="col-12 col-md-6 col-lg-6 bg-body border border-info rounded-3 p-3 mt-3">
-
-                      <figure class="container-fluid p-1 figure m-0">
-                       
-<pre class="bg-secondary rounded fs-5" style="background: linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 10ch,  #A7C 10ch,  #A7C 19ch, white 19ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 10ch,  #A7C 10ch,  #A7C 19ch, white 19ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 10ch,  #A7C 10ch,  #A7C 16ch, white 16ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 10ch,  #A7C 10ch,  #A7C 13ch, white 13ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 10ch,  #A7C 10ch,  #A7C 14ch, white 14ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 13ch,  #A7C 13ch,  #A7C 16ch, white 16ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 10ch,  #A7C 10ch,  #A7C 15ch, white 15ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 10ch,  #A7C 10ch,  #A7C 15ch, white 15ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 10ch,  #A7C 10ch,  #A7C 20ch, white 20ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch), linear-gradient(to right, white 0ch, white 0ch, white 80ch); background-repeat: no-repeat; background-size: 80ch 22px, 80ch 44px, 80ch 66px, 80ch 88px, 80ch 110px, 80ch 132px, 80ch 154px, 80ch 176px, 80ch 198px, 80ch 220px, 80ch 242px, 80ch 264px, 80ch 286px, 80ch 308px, 80ch 330px, 80ch 352px, 80ch 374px, 80ch 396px, 80ch 418px, 80ch 440px, 80ch 462px, 80ch 484px, 80ch 506px, 80ch 528px, 80ch 550px, 80ch 572px, 80ch 594px, 80ch 616px, 80ch 638px, 80ch 660px, 80ch 682px, 80ch 704px, 80ch 726px, 80ch 748px, 80ch 770px, 80ch 792px, 80ch 814px, 80ch 836px, 80ch 858px, 80ch 880px, 80ch 902px, 80ch 924px; background-clip: text; -webkit-background-clip: text; color: transparent; width: 80ch; font-family: monospace; font-size: 20px; line-height: 22px;">
+                <div
+                  class="col-12 col-md-6 col-lg-6 bg-body border border-info rounded-3 p-3 mt-3"
+                >
+                  <figure class="container-fluid p-1 figure m-0">
+                    <pre
+                      class="bg-secondary rounded fs-5"
+                      style="
+                        background: linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 10ch,
+                            #a7c 10ch,
+                            #a7c 19ch,
+                            white 19ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 10ch,
+                            #a7c 10ch,
+                            #a7c 19ch,
+                            white 19ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 10ch,
+                            #a7c 10ch,
+                            #a7c 16ch,
+                            white 16ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 10ch,
+                            #a7c 10ch,
+                            #a7c 13ch,
+                            white 13ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 10ch,
+                            #a7c 10ch,
+                            #a7c 14ch,
+                            white 14ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 13ch,
+                            #a7c 13ch,
+                            #a7c 16ch,
+                            white 16ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 10ch,
+                            #a7c 10ch,
+                            #a7c 15ch,
+                            white 15ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 10ch,
+                            #a7c 10ch,
+                            #a7c 15ch,
+                            white 15ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 10ch,
+                            #a7c 10ch,
+                            #a7c 20ch,
+                            white 20ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          ),
+                          linear-gradient(
+                            to right,
+                            white 0ch,
+                            white 0ch,
+                            white 80ch
+                          );
+                        background-repeat: no-repeat;
+                        background-size: 80ch 22px, 80ch 44px, 80ch 66px,
+                          80ch 88px, 80ch 110px, 80ch 132px, 80ch 154px,
+                          80ch 176px, 80ch 198px, 80ch 220px, 80ch 242px,
+                          80ch 264px, 80ch 286px, 80ch 308px, 80ch 330px,
+                          80ch 352px, 80ch 374px, 80ch 396px, 80ch 418px,
+                          80ch 440px, 80ch 462px, 80ch 484px, 80ch 506px,
+                          80ch 528px, 80ch 550px, 80ch 572px, 80ch 594px,
+                          80ch 616px, 80ch 638px, 80ch 660px, 80ch 682px,
+                          80ch 704px, 80ch 726px, 80ch 748px, 80ch 770px,
+                          80ch 792px, 80ch 814px, 80ch 836px, 80ch 858px,
+                          80ch 880px, 80ch 902px, 80ch 924px;
+                        background-clip: text;
+                        -webkit-background-clip: text;
+                        color: transparent;
+                        width: 80ch;
+                        font-family: monospace;
+                        font-size: 20px;
+                        line-height: 22px;
+                      "
+                    >
 [<br>  {<br>    "category": "alliance",<br>    "id": 434243723,<br>    "name": "C C P Alliance"<br>  },<br>  {<br>    "category": "corporation",<br>    "id": 109299958,<br>    "name": "C C P"<br>  },<br>  {<br>    "category": "faction",<br>    "id": 500001,<br>    "name": "Caldari State"<br>  },<br>  {<br>    "category": "inventory_type",<br>    "id": 587,<br>    "name": "Rifter"<br>  },<br>  {<br>    "category": "inventory_type",<br>    "id": 3082,<br>    "name": "250mm Railgun II"<br>  },<br>  {<br>    "category": "inventory_type",<br>    "id": 11568,<br>    "name": "Avatar Blueprint"<br>  },<br>  {<br>    "category": "inventory_type",<br>    "id": 30752,<br>    "name": "Intact Hull Section"<br>  },<br>  {<br>    "category": "character",<br>    "id": 1338057886,<br>    "name": "CCP Alliance Tournament"<br>  }<br>]   <br>
 </pre>
-                    <figcaption class="text-center mt-2">Sample response from <abbr title="Application Programming Interface">API</abbr> lookup.</figcaption>
+                    <figcaption class="text-center mt-2">
+                      Sample response from
+                      <abbr title="Application Programming Interface">API</abbr>
+                      lookup.
+                    </figcaption>
                   </figure>
                 </div>
                 <!-- Detailed Breakdown -->
                 <div class="col-12 col-md-6 col-lg-6">
                   <div class="bg-body border border-info rounded p-3 mb-2">
                     <p>
-                      This tool initiates by resolving an ID to its associated category using the <code>universe/names</code> endpoint. From there, each category is treated accordingly.
+                      This tool initiates by resolving an ID to its associated
+                      category using the
+                      <code>universe/names</code> endpoint. From there, each
+                      category is treated accordingly.
                     </p>
                   </div>
                   <div class="bg-body border border-info rounded p-3 mb-2">
                     <p>
-                      If the category is <code>inventory_type</code>, the tool performs additional lookups to identify the type’s group and category. This helps distinguish between ships, blueprints, and relics — ensuring precise URL construction.
+                      If the category is <code>inventory_type</code>, the tool
+                      performs additional lookups to identify the type’s group
+                      and category. This helps distinguish between ships,
+                      blueprints, and relics — ensuring precise URL
+                      construction.
                     </p>
                   </div>
                   <div class="bg-body border border-info rounded p-3">
                     <p>
-                      Ship types will return <strong>icon</strong> and <strong>render</strong> images. Blueprints return both <strong>bp</strong> and <strong>bpc</strong> formats. Ancient relics return <strong>relic</strong> images. All other IDs resolve to their appropriate <strong>portrait</strong> or <strong>logo</strong>.
+                      Ship types will return <strong>icon</strong> and
+                      <strong>render</strong> images. Blueprints return both
+                      <strong>bp</strong> and <strong>bpc</strong> formats.
+                      Ancient relics return <strong>relic</strong> images. All
+                      other IDs resolve to their appropriate
+                      <strong>portrait</strong> or <strong>logo</strong>.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-        <div
-          class="col-12 bg-primary bg-opacity-10 rounded-5 rounded-bottom-0 rounded-top-0 rounded-top-0 border border-primary border-top-0 border-bottom-0 row g-0 mx-auto p-3 py-0 my-0"
-        >
-          <div class="col-12">
-            <fieldset
-              id="resolver-form"
-              class="bg-secondary bg-opacity-75 rounded rounded-bottom-0 rounded-top-0 border border-secondary border-bottom-0 border-top-0 p-1 py-4"
-            >
-              <legend>
-                <h2>Demo</h2>
-              </legend>
-              <p class="rounded-pill bg-body px-3">
-                Input an id and click the button to demonstrate the script. The
-                input field will offer valid ids of each category for the
-                purpose of the demo.
-              </p>
-              <div class="row g-3 align-items-center mt-5">
-                <div class="col-sm-8 col-md-9 col-lg-10">
-                  <div class="form-floating">
-                    <input
-                      type="number"
-                      class="form-control topcoat-text-input"
-                      list="id-suggestions"
-                      id="input-id"
-                      placeholder="Enter EVE ID"
-                      required
-                    />
-                    <datalist id="id-suggestions">
-                      <option value="434243723">Alliance: 434243723</option>
-                      <option value="109299958">Corporation: 109299958</option>
-                      <option value="500001">Faction (NPC Corp): 500001</option>
-                      <option value="1338057886">Character: 1338057886</option>
-                      <option value="587">Rifter (type): 587</option>
-                      <option value="3082">
-                        250mm Railgun II (type): 3082
-                      </option>
-                      <option value="11568">
-                        Avatar Blueprint (type): 11568
-                      </option>
-                      <option value="30752">
-                        Intact Hull Section (type): 30752
-                      </option>
-                    </datalist>
-                    <label for="input-id">Enter EVE ID</label>
+          <div
+            class="col-12 bg-primary bg-opacity-10 rounded-5 rounded-bottom-0 rounded-top-0 rounded-top-0 border border-primary border-top-0 border-bottom-0 row g-0 mx-auto p-3 py-0 my-0"
+          >
+            <div class="col-12">
+              <fieldset
+                id="resolver-form"
+                class="bg-secondary bg-opacity-75 rounded rounded-bottom-0 rounded-top-0 border border-secondary border-bottom-0 border-top-0 p-1 py-4"
+              >
+                <legend>
+                  <h2>Demo</h2>
+                </legend>
+                <p class="rounded-pill bg-body px-3">
+                  Input an id and click the button to demonstrate the script.
+                  The input field will offer valid ids of each category for the
+                  purpose of the demo.
+                </p>
+                <div class="row g-3 align-items-center mt-5">
+                  <div class="d-none col-12">
+                    <label for="size-option-1" class="topcoat-radio-button">
+                    <input id="size-option-1" type="radio" name="size-option" value="32" checked />
+                    <div class="topcoat-radio-button__checkmark"></div>
+                    32</label>
+                    <label for="size-option-2" class="topcoat-radio-button">
+                    <input id="size-option-2" type="radio" name="size-option" value="64" />
+                    <div class="topcoat-radio-button__checkmark"></div>
+                    64</label>
+                    <label for="size-option-3" class="topcoat-radio-button">
+                    <input id="size-option-3" type="radio" name="size-option" value="128" />
+                    <div class="topcoat-radio-button__checkmark"></div>
+                    128</label>
+                    <label for="size-option-4" class="topcoat-radio-button">
+                    <input id="size-option-4" type="radio" name="size-option" value="256" />
+                    <div class="topcoat-radio-button__checkmark"></div>
+                    256</label>
+                    <label for="size-option-5" class="topcoat-radio-button">
+                    <input id="size-option-5" type="radio" name="size-option" value="512" />
+                    <div class="topcoat-radio-button__checkmark"></div>
+                    512</label>
+                    <label for="size-option-6" class="topcoat-radio-button">
+                    <input id="size-option-6" type="radio" name="size-option" value="1024" />
+                    <div class="topcoat-radio-button__checkmark"></div>
+                    1024</label>
+                  </div>
+                  <div class="col-sm-8 col-md-9 col-lg-10">
+                    <div class="form-floating">
+                      <input
+                        type="number"
+                        class="form-control topcoat-text-input"
+                        list="id-suggestions"
+                        id="input-id"
+                        placeholder="Enter EVE ID"
+                        required
+                      />
+                      <datalist id="id-suggestions">
+                        <option value="434243723">Alliance: 434243723</option>
+                        <option value="109299958">
+                          Corporation: 109299958
+                        </option>
+                        <option value="500001">
+                          Faction (NPC Corp): 500001
+                        </option>
+                        <option value="1338057886">
+                          Character: 1338057886
+                        </option>
+                        <option value="587">Rifter (type): 587</option>
+                        <option value="3082">
+                          250mm Railgun II (type): 3082
+                        </option>
+                        <option value="11568">
+                          Avatar Blueprint (type): 11568
+                        </option>
+                        <option value="30752">
+                          Intact Hull Section (type): 30752
+                        </option>
+                      </datalist>
+                      <label for="input-id">Enter EVE ID</label>
+                    </div>
+                  </div>
+                  <div
+                    class="col-sm-4 col-md-3 col-lg-2 d-flex justify-content-start"
+                  >
+                    <div id="spinner-container" class="d-none mx-auto">
+                      <svg id="animated-logo" viewBox="0 0 360 200" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                          <!-- Glowing cyan tail -->
+                          <linearGradient id="glowGradient" x1="1" y1="0" x2="0" y2="0">
+                            <stop offset="0%" stop-color="cyan" stop-opacity="0.9" />
+                            <stop offset="25%" stop-color="teal" stop-opacity="1" />
+                            <stop offset="50%" stop-color="cyan" stop-opacity="0.9" />
+                            <stop offset="75%" stop-color="teal" stop-opacity="1" />
+                            <stop offset="100%" stop-color="cyan" stop-opacity="0.9" />
+                          </linearGradient>
+                    
+                          <!-- Glow blur filter -->
+                          <filter id="glowFilter" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="13" result="blur" />
+                            <feMerge>
+                              <feMergeNode in="blur" />
+                              <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                          </filter>
+                        </defs>
+                    
+                        <!-- Glowing tail -->
+                        <path d="
+                            M 160,100
+                            A 40,40 0 1 0 80,100
+                            A 40,40 0 1 0 160,100
+                            A 40,40 0 1 1 240,100
+                            A 40,40 0 1 1 160,100
+                          " stroke="url(#glowGradient)" stroke-width="13" fill="none" filter="url(#glowFilter)" stroke-linecap="round" stroke-dasharray="360 120" stroke-dashoffset="0">
+                          <animate attributeName="stroke-dashoffset" from="-240" to="240" dur="1.25643s" repeatCount="indefinite" />
+                        </path>
+                      </svg>
+                    </div>
+                    <div id="button-container" class="mx-auto">
+                      <button
+                        id="resolve-button"
+                        class="btn btn-primary text-bg-primary topcoat-button--large"
+                        type="submit"
+                      >
+                        Resolve Image
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <div
-                  class="col-sm-4 col-md-3 col-lg-2 d-flex justify-content-start"
-                >
-                  <div id="spinner-container" class="d-none mx-auto">
-                    <div class="spinner-border text-primary"></div>
-                  </div>
-                  <div id="button-container" class="mx-auto">
-                    <button
-                      id="resolve-button"
-                      class="btn btn-primary text-bg-primary topcoat-button--large"
-                      type="submit"
-                    >
-                      Resolve Image
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </fieldset>
+              </fieldset>
+            </div>
           </div>
-        </div>
-        <div
-          id="result"
-          class="col-12 bg-success bg-opacity-10 rounded-5 rounded-top-0 border border-success border-top-0 row g-0 mb-auto mx-auto p-3 pt-0 rounded-top-0"
-        >
-          <div class="col-12">
-            <div
-              class="h-100 bg-secondary bg-opacity-75 border border-secondary border-top-0 rounded rounded-top-0 p-4"
-            >
-              <h2>Results</h2>
-              <div class="bg-body rounded border border-success">
-                <table
-                  class="table table-striped border-0 table-striped-columns table-hover"
-                  border="1"
-                  cellpadding="6"
-                >
-                  <caption class="mx-1">
-                    Results from input made above will appear here.
-                  </caption>
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Variant</th>
-                      <th scope="col">URL</th>
-                      <th scope="col" class="text-end">Preview</th>
-                    </tr>
-                  </thead>
-                  <tbody id="result-body"></tbody>
-                </table>
+          <div
+            id="result"
+            class="col-12 bg-success bg-opacity-10 rounded-5 rounded-top-0 border border-success border-top-0 row g-0 mb-auto mx-auto p-3 pt-0 rounded-top-0"
+          >
+            <div class="col-12">
+              <div
+                class="h-100 bg-secondary bg-opacity-75 border border-secondary border-top-0 rounded rounded-top-0 p-4"
+              >
+                <h2>Results</h2>
+                <div class="bg-body rounded border border-success">
+                  <table
+                    class="table table-striped border-0 table-striped-columns table-hover"
+                    border="1"
+                    cellpadding="6"
+                  >
+                    <caption class="mx-1">
+                      Results from input made above will appear here.
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Variant</th>
+                        <th scope="col">URL</th>
+                        <th scope="col" class="text-end">Preview</th>
+                      </tr>
+                    </thead>
+                    <tbody id="result-body"></tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <footer class="text-center mt-5">
+          <p class="mb-0">
+            Created by
+            <a
+              href="https://github.com/PhobiaCide"
+              target="_blank"
+              rel="noopener"
+              >PhobiaCide</a
+            >
+          </p>
+        </footer>
       </div>
-      <footer class="text-center mt-5">
-        <p class="mb-0">
-          Created by
-          <a href="https://github.com/PhobiaCide" target="_blank" rel="noopener"
-            >PhobiaCide</a
-          >
-        </p>
-      </footer>
     </main>
     <script defer>
       let runCount = 0;
 
       const btn = document.getElementById("resolve-button");
       const input = document.getElementById("input-id");
+      const size = document.querySelector('input[name="size-option"]:checked')?.value;
+      const queryString = `?size=${size}`;
       const resultBody = document.getElementById("result-body");
       const spinnerContainer = document.getElementById("spinner-container");
       const buttonContainer = document.getElementById("button-container");
@@ -239,7 +681,7 @@
         buttonContainer.classList.toggle("d-none");
         spinnerContainer.classList.toggle("d-none");
 
-        const resolver = await Image.create(id);
+        const resolver = await Image.create(id, queryString);
         const variants = resolver.variants;
 
         if (!Object.keys(variants).length) {
