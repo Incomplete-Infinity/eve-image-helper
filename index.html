@@ -1,53 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EVE Image Resolver Demo</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EVE Image Resolver Demo</title>
+    <!-- Halfmoon CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/halfmoon@2.0.2/css/halfmoon.min.css"
+      rel="stylesheet"
+      integrity="sha256-RjeFzczeuZHCyS+Gvz+kleETzBF/o84ZRHukze/yv6o="
+      crossorigin="anonymous"
+    />
+    <!-- Halfmoon core themes -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/halfmoon@2.0.2/css/cores/halfmoon.cores.css"
+      rel="stylesheet"
+      integrity="sha256-MAzAVJMU/ze52ZHcA8CeqRrCOVndMZlHwNeS2c73vP4="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/topcoat/0.8.0/css/topcoat-desktop-dark.min.css"
+      integrity="sha512-Cwdrdy7iqIj7n5XjgDqvpCOO4aztpoIISOcabdx5igD8Z51YuOWa8BBbI8+2oOI6Rf77xMZ1vAlXvGn6jc6O5Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-  <!-- Halfmoon CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/halfmoon@2.0.2/css/halfmoon.min.css" rel="stylesheet"
-    integrity="sha256-RjeFzczeuZHCyS+Gvz+kleETzBF/o84ZRHukze/yv6o=" crossorigin="anonymous" />
-  <!-- Halfmoon core themes -->
-  <link href="https://cdn.jsdelivr.net/npm/halfmoon@2.0.2/css/cores/halfmoon.cores.css" rel="stylesheet"
-    integrity="sha256-MAzAVJMU/ze52ZHcA8CeqRrCOVndMZlHwNeS2c73vP4=" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/topcoat/0.8.0/css/topcoat-desktop-dark.min.css"
-    integrity="sha512-Cwdrdy7iqIj7n5XjgDqvpCOO4aztpoIISOcabdx5igD8Z51YuOWa8BBbI8+2oOI6Rf77xMZ1vAlXvGn6jc6O5Q=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="./src/eve-image-helper.js"></script>
+  </head>
 
-  <script src="./src/eve-image-helper.js"></script>
-</head>
-
-<body data-bs-theme="dark" data-bs-core="modern">
-  <main class="text-body px-sm-0 px-md-1 px-lg-2">
-    <header class="bg-secondary bg-opacity-50">
-      <h1>EVE Image Resolver</h1>
-    </header>
-    <div class="row bg-primary-subtle bg-gradient rounded-5 m-3 shadow-lg">
-      <div
-        class="col-12 bg-info bg-opacity-10 rounded-5 rounded-bottom-0 border border-info border-bottom-0 row g-0 mx-auto p-3 pb-0 mb-0">
+  <body data-bs-theme="dark" data-bs-core="modern">
+    <main class="container text-body">
+      <header class="bg-secondary bg-opacity-50">
+        <h1>EVE Image Resolver</h1>
+      </header>
+      <div class="row bg-primary-subtle bg-gradient rounded-5 m-3 shadow-lg">
         <div
-          class="col-sm-7 col-md-8 col-lg-9 bg-secondary bg-opacity-75 border border-secondary border-bottom-0 border-end-0 rounded-end-0 rounded rounded-bottom-0">
-          <div class="row h-100">
-            <header class="col-12 mb-3 rounded rounded-bottom-0 rounded-end-0 bg-primary-subtle"
-              style="border-bottom-right-radius: 50px !important;">
-              <h2 class="mb-3 text-center">What This Does</h2>
-            </header>
-            <p class="col-12 bg-body rounded px-1 border">
-              This tool takes an EVE Online ID and determines which image
-              formats are available using basic
-              <abbr title="Eve Swagger Interface"><a href="https://docs.esi.evetech.net/docs/image_server.html"
-                  target="_blank" rel="noopener">ESI</a></abbr>
-              lookups. It supports a wide range of in-game entities, which are all listed to the right.
-            </p>
-            <p class="col-12 bg-body rounded px-1 border">
-              The script first resolves the category (e.g. <em>character</em>,
-              <em>corporation</em>, <em>inventory_type</em>) by querying the <code>universe/names/</code>
-              <em>endpoint</em> with the given ID. Below, is an reproduction of an actual response to one such query.
-            </p>
-            <figure class="col-4 d-inline-block bg-body rounded figure">
-              <pre><code>[
+          class="container-fluid bg-info bg-opacity-10 rounded-5 rounded-bottom-0 border border-info border-bottom-0 row g-0 mx-auto p-3 pb-0 mb-0"
+        >
+          <div
+            class="container-fluid bg-secondary bg-opacity-75 border border-secondary border-bottom-0 border-end-0 rounded-end-0 rounded rounded-bottom-0"
+          >
+            <div class="row container-fluid">
+              <header
+                class="col-12 rounded rounded-bottom-0 rounded-end-0 bg-primary-subtle"
+                style="border-bottom-right-radius: 50px !important"
+              >
+                <h2 class="text-center">What This Does</h2>
+              </header>
+              <div
+                class="col-7 bg-secondary border border-info border-end-0 rounded rounded-end-0"
+              >
+                <hgroup>
+                  <header
+                    class="rounded rounded-bottom-0 rounded-end-0 bg-primary-subtle"
+                    style="border-bottom-right-radius: 50px !important"
+                  >
+                    <h3 class="text-center">Introduction</h3>
+                  </header>
+                  <p class="px-1">
+                    There are an extremely large quantity of Eve Online
+                    entities(Characters, Inventory Types, Corporations,
+                    Alliances, etc.).
+                  </p>
+                  <p class="px-1">
+                    The game tracks all of these by with a very long list
+                    containing all of them. This list is indexed by ID.
+                  </p>
+                </hgroup>
+              </div>
+              <div
+                class="col-5 border border-info border-start-0 rounded rounded-start-0"
+              >
+                <div class="card">
+                  <header
+                    class="card-header rounded-start-0 bg-primary-subtle text-center"
+                    style="border-bottom-left-radius: 50px !important"
+                  >
+                    Supported ID Categories
+                  </header>
+                  <div class="card-body">
+                    <ul class="topcoat-list__container list-group">
+                      <li
+                        class="topcoat-list__item list-group-item rounded px-1 bg-body"
+                      >
+                        Character
+                      </li>
+                      <li
+                        class="topcoat-list__item list-group-item rounded px-1 bg-body"
+                      >
+                        Corporation
+                      </li>
+                      <li
+                        class="topcoat-list__item list-group-item rounded px-1 bg-body"
+                      >
+                        Alliance
+                      </li>
+                      <li
+                        class="topcoat-list__item list-group-item rounded px-1 bg-body"
+                      >
+                        Faction (NPC Corp)
+                      </li>
+                      <li
+                        class="topcoat-list__item list-group-item rounded px-1 bg-body"
+                      >
+                        Type (Item)
+                      </li>
+                      <li
+                        class="topcoat-list__item list-group-item rounded px-1 bg-body"
+                      >
+                        Blueprint
+                      </li>
+                      <li
+                        class="topcoat-list__item list-group-item rounded px-1 bg-body"
+                      >
+                        Ancient Relic
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-sm-12 col-md-6 col-lg-3 bg-body border border-info rounded-3 p-1"
+              >
+                <figure class="container-fluid p-1 figure m-0">
+                  <pre class="bg-secondary rounded"><code>[
   {
     "category": "alliance",
     "id": 434243723,
@@ -89,162 +167,191 @@
     "name": "CCP Alliance Tournament"
   }
 ]</code></pre>
-<figcaption>As you can see, this <abbr title="Application Programming Interface">API</abbr> </figcaption>
-            </figure>
-
-            <p class="col-8 bg-body rounded px-1 border">
-              Then, it determines the appropriate image variants. For inventory types,
-              it performs additional lookups to distinguish between ships, blueprints, and relics
-              specifically — ensuring the most accurate URL formation.
-            </p>
-            <p class="col-8 bg-body rounded px-1 border">
-              Ships will return both <strong>icon</strong> and
-              <strong>render</strong> images. Blueprints return
-              <strong>bp</strong> and <strong>bpc</strong> formats. Ancient
-              relics return a <strong>relic</strong> image. Other IDs resolve
-              to <strong>portraits</strong> or <strong>logos</strong> as
-              appropriate.
-            </p>
+                  <figcaption>
+                    As you can see, this
+                    <abbr title="Application Programming Interface">API</abbr>
+                  </figcaption>
+                </figure>
+              </div>
+              <div class="col-7">
+                <p class="bg-body rounded px-1 border border-info">
+                  This tool takes an EVE Online ID and determines which image
+                  formats are available using basic
+                  <abbr title="Eve Swagger Interface"
+                    ><a
+                      href="https://docs.esi.evetech.net/docs/image_server.html"
+                      target="_blank"
+                      rel="noopener"
+                      >ESI</a
+                    ></abbr
+                  >
+                  lookups. It supports a wide range of in-game entities, which
+                  are all listed to the right.
+                </p>
+                <p class="bg-body rounded p-1 px-2 border border-info">
+                  The script first resolves the category (e.g.
+                  <em>character</em>, <em>corporation</em>,
+                  <em>inventory_type</em>) by querying the
+                  <code>universe/names/</code> <em>endpoint</em> with the given
+                  ID. Below, is an reproduction of an actual response to one
+                  such query.
+                </p>
+                <p class="bg-body rounded p-1 px-2 border border-info">
+                  Then, it determines the appropriate image variants. For
+                  inventory types, it performs additional lookups to distinguish
+                  between ships, blueprints, and relics specifically — ensuring
+                  the most accurate URL formation.
+                </p>
+                <p class="bg-body rounded p-1 px-2 border border-info">
+                  Ships will return both <strong>icon</strong> and
+                  <strong>render</strong> images. Blueprints return
+                  <strong>bp</strong> and <strong>bpc</strong> formats. Ancient
+                  relics return a <strong>relic</strong> image. Other IDs
+                  resolve to <strong>portraits</strong> or
+                  <strong>logos</strong> as appropriate.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-sm-5 col-md-4 col-lg-3">
-          <div
-            class="card h-100 bg-secondary bg-opacity-75 border border-secondary border-bottom-0 border-start-0 rounded rounded-bottom-0 rounded-start-0">
-            <header class="card-header rounded-start-0 bg-primary-subtle text-center"
-              style="border-bottom-left-radius: 50px !important;">
-              Supported ID Categories
-            </header>
-            <div class="card-body">
-              <ul class="topcoat-list__container list-group">
-                <li class="topcoat-list__item list-group-item rounded px-1 bg-body">Character</li>
-                <li class="topcoat-list__item list-group-item rounded px-1 bg-body">
-                  Corporation
-                </li>
-                <li class="topcoat-list__item list-group-item rounded px-1 bg-body">Alliance</li>
-                <li class="topcoat-list__item list-group-item rounded px-1 bg-body">
-                  Faction (NPC Corp)
-                </li>
-                <li class="topcoat-list__item list-group-item rounded px-1 bg-body">
-                  Type (Item)
-                </li>
-                <li class="topcoat-list__item list-group-item rounded px-1 bg-body">Blueprint</li>
-                <li class="topcoat-list__item list-group-item rounded px-1 bg-body">
-                  Ancient Relic
-                </li>
-              </ul>
+
+        <div
+          class="col-12 bg-primary bg-opacity-10 rounded-5 rounded-bottom-0 rounded-top-0 rounded-top-0 border border-primary border-top-0 border-bottom-0 row g-0 mx-auto p-3 py-0 my-0"
+        >
+          <div class="col-12">
+            <fieldset
+              id="resolver-form"
+              class="bg-secondary bg-opacity-75 rounded rounded-bottom-0 rounded-top-0 border border-secondary border-bottom-0 border-top-0 p-1 py-4"
+            >
+              <legend>
+                <h2>Demo</h2>
+              </legend>
+              <p class="rounded-pill bg-body px-3">
+                Input an id and click the button to demonstrate the script. The
+                input field will offer valid ids of each category for the
+                purpose of the demo.
+              </p>
+              <div class="row g-3 align-items-center mt-5">
+                <div class="col-sm-8 col-md-9 col-lg-10">
+                  <div class="form-floating">
+                    <input
+                      type="number"
+                      class="form-control topcoat-text-input"
+                      list="id-suggestions"
+                      id="input-id"
+                      placeholder="Enter EVE ID"
+                      required
+                    />
+                    <datalist id="id-suggestions">
+                      <option value="434243723">Alliance: 434243723</option>
+                      <option value="109299958">Corporation: 109299958</option>
+                      <option value="500001">Faction (NPC Corp): 500001</option>
+                      <option value="1338057886">Character: 1338057886</option>
+                      <option value="587">Rifter (type): 587</option>
+                      <option value="3082">
+                        250mm Railgun II (type): 3082
+                      </option>
+                      <option value="11568">
+                        Avatar Blueprint (type): 11568
+                      </option>
+                      <option value="30752">
+                        Intact Hull Section (type): 30752
+                      </option>
+                    </datalist>
+                    <label for="input-id">Enter EVE ID</label>
+                  </div>
+                </div>
+                <div
+                  class="col-sm-4 col-md-3 col-lg-2 d-flex justify-content-start"
+                >
+                  <div id="spinner-container" class="d-none mx-auto">
+                    <div class="spinner-border text-primary"></div>
+                  </div>
+                  <div id="button-container" class="mx-auto">
+                    <button
+                      id="resolve-button"
+                      class="btn btn-primary text-bg-primary topcoat-button--large"
+                      type="submit"
+                    >
+                      Resolve Image
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <div
+          id="result"
+          class="col-12 bg-success bg-opacity-10 rounded-5 rounded-top-0 border border-success border-top-0 row g-0 mb-auto mx-auto p-3 pt-0 rounded-top-0"
+        >
+          <div class="col-12">
+            <div
+              class="h-100 bg-secondary bg-opacity-75 border border-secondary border-top-0 rounded rounded-top-0 p-4"
+            >
+              <h2>Results</h2>
+              <div class="bg-body rounded border border-success">
+                <table
+                  class="table table-striped border-0 table-striped-columns table-hover"
+                  border="1"
+                  cellpadding="6"
+                >
+                  <caption class="mx-1">
+                    Results from input made above will appear here.
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Variant</th>
+                      <th scope="col">URL</th>
+                      <th scope="col" class="text-end">Preview</th>
+                    </tr>
+                  </thead>
+                  <tbody id="result-body"></tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <footer class="text-center mt-5">
+        <p class="mb-0">
+          Created by
+          <a href="https://github.com/PhobiaCide" target="_blank" rel="noopener"
+            >PhobiaCide</a
+          >
+        </p>
+      </footer>
+    </main>
+    <script defer>
+      let runCount = 0;
 
-      <div
-        class="col-12 bg-primary bg-opacity-10 rounded-5 rounded-bottom-0 rounded-top-0 rounded-top-0 border border-primary border-top-0 border-bottom-0 row g-0 mx-auto p-3 py-0 my-0">
-        <div class="col-12">
-          <fieldset id="resolver-form"
-            class="bg-secondary bg-opacity-75 rounded rounded-bottom-0 rounded-top-0 border border-secondary border-bottom-0 border-top-0 p-1 py-4">
-            <legend>
-              <h2>Demo</h2>
-            </legend>
-            <p class="rounded-pill bg-body px-3">Input an id and click the button to demonstrate the script. The input
-              field will offer valid ids of each category for the purpose of the demo.</p>
-            <div class="row g-3 align-items-center mt-5">
-              <div class="col-sm-8 col-md-9 col-lg-10">
-                <div class="form-floating">
-                  <input type="number" class="form-control topcoat-text-input" list="id-suggestions" id="input-id"
-                    placeholder="Enter EVE ID" required />
-                  <datalist id="id-suggestions">
-                    <option value="434243723">Alliance: 434243723</option>
-                    <option value="109299958">Corporation: 109299958</option>
-                    <option value="500001">Faction (NPC Corp): 500001</option>
-                    <option value="1338057886">Character: 1338057886</option>
-                    <option value="587">Rifter (type): 587</option>
-                    <option value="3082">250mm Railgun II (type): 3082</option>
-                    <option value="11568">
-                      Avatar Blueprint (type): 11568
-                    </option>
-                    <option value="30752">
-                      Intact Hull Section (type): 30752
-                    </option>
-                  </datalist>
-                  <label for="input-id">Enter EVE ID</label>
-                </div>
-              </div>
-              <div class="col-sm-4 col-md-3 col-lg-2 d-flex justify-content-start">
-                <div id="spinner-container" class="d-none mx-auto">
-                  <div class="spinner-border text-primary"></div>
-                </div>
-                <div id="button-container" class="mx-auto">
-                  <button id="resolve-button" class="btn btn-primary text-bg-primary topcoat-button--large"
-                    type="submit">
-                    Resolve Image
-                  </button>
-                </div>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-      </div>
-      <div id="result"
-        class="col-12 bg-success bg-opacity-10 rounded-5 rounded-top-0 border border-success border-top-0 row g-0 mb-auto mx-auto p-3 pt-0 rounded-top-0">
-        <div class="col-12">
-          <div class="h-100 bg-secondary bg-opacity-75 border border-secondary border-top-0 rounded rounded-top-0 p-4">
+      const btn = document.getElementById("resolve-button");
+      const input = document.getElementById("input-id");
+      const resultBody = document.getElementById("result-body");
+      const spinnerContainer = document.getElementById("spinner-container");
+      const buttonContainer = document.getElementById("button-container");
 
-            <h2>Results</h2>
-            <div class="bg-body rounded border border-success">
-              <table class="table table-striped border-0 table-striped-columns table-hover" border="1" cellpadding="6">
-                <caption class="mx-1">
-                  Results from input made above will appear here.
-                </caption>
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Variant</th>
-                    <th scope="col">URL</th>
-                    <th scope="col" class="text-end">Preview</th>
-                  </tr>
-                </thead>
-                <tbody id="result-body"></tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+      btn.onclick = async () => {
+        const id = Number(input.value);
+        input.value = ""; // Clear the input for new entry
+        if (!id) return alert("Enter a valid numeric ID");
 
-        <footer class="text-center mt-5">
-          <p class="mb-0">
-            Created by
-            <a href="https://github.com/PhobiaCide" target="_blank" rel="noopener">PhobiaCide</a>
-          </p>
-        </footer>
-  </main>
-  <script defer>
-    let runCount = 0;
+        buttonContainer.classList.toggle("d-none");
+        spinnerContainer.classList.toggle("d-none");
 
-    const btn = document.getElementById("resolve-button");
-    const input = document.getElementById("input-id");
-    const resultBody = document.getElementById("result-body");
-    const spinnerContainer = document.getElementById("spinner-container");
-    const buttonContainer = document.getElementById("button-container");
+        const resolver = await Image.create(id);
+        const variants = resolver.variants;
 
-    btn.onclick = async () => {
-      const id = Number(input.value);
-      input.value = ""; // Clear the input for new entry
-      if (!id) return alert("Enter a valid numeric ID");
+        if (!Object.keys(variants).length) {
+          alert("No image variants available.");
+          return;
+        }
 
-      buttonContainer.classList.toggle("d-none");
-      spinnerContainer.classList.toggle("d-none");
-
-      const resolver = await Image.create(id);
-      const variants = resolver.variants;
-
-      if (!Object.keys(variants).length) {
-        alert("No image variants available.");
-        return;
-      }
-
-      const rows = Object.entries(variants)
-        .map(([key, url]) => {
-          runCount++;
-          return `
+        const rows = Object.entries(variants)
+          .map(([key, url]) => {
+            runCount++;
+            return `
           <tr>
             <th scope="row">${runCount}</th>
             <td>${key}</td>
@@ -252,21 +359,26 @@
             <td class="text-end"><img src="${url}" alt="${key}" style="max-height:100px" /></td>
           </tr>
         `;
-        })
-        .join("");
+          })
+          .join("");
 
-      resultBody.insertAdjacentHTML("beforeend", rows);
+        resultBody.insertAdjacentHTML("beforeend", rows);
 
-      buttonContainer.classList.toggle("d-none");
-      spinnerContainer.classList.toggle("d-none");
-    };
-  </script>
+        buttonContainer.classList.toggle("d-none");
+        spinnerContainer.classList.toggle("d-none");
+      };
+    </script>
 
-  <!-- Option 2: Separate Popper and Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha256-whL0tQWoY1Ku1iskqPFvmZ+CHsvmRWx/PIoEvIeWh4I=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-    integrity="sha256-3gQJhtmj7YnV1fmtbVcnAV6eI4ws0Tr48bVZCThtCGQ=" crossorigin="anonymous"></script>
-</body>
-
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha256-whL0tQWoY1Ku1iskqPFvmZ+CHsvmRWx/PIoEvIeWh4I="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha256-3gQJhtmj7YnV1fmtbVcnAV6eI4ws0Tr48bVZCThtCGQ="
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
